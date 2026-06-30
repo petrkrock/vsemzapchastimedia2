@@ -1,0 +1,84 @@
+{
+  "collections": [
+    {
+      "id": "_pb_users_auth_",
+      "name": "users",
+      "type": "auth",
+      "system": false,
+      "schema": [],
+      "options": {
+        "allowEmailAuth": true,
+        "allowOAuth2Auth": false,
+        "allowUsernameAuth": false,
+        "requireEmailVerification": false,
+        "minPasswordLength": 8
+      }
+    },
+    {
+      "name": "profiles",
+      "type": "base",
+      "fields": [
+        {
+          "name": "user",
+          "type": "relation",
+          "collectionId": "_pb_users_auth_",
+          "cascadeDelete": true,
+          "maxSelect": 1
+        },
+        {
+          "name": "role",
+          "type": "select",
+          "values": ["advertiser", "admin"],
+          "maxSelect": 1
+        },
+        {
+          "name": "company_name",
+          "type": "text"
+        },
+        {
+          "name": "brand_name",
+          "type": "text"
+        },
+        {
+          "name": "inn",
+          "type": "text"
+        },
+        {
+          "name": "contact_person",
+          "type": "text"
+        },
+        {
+          "name": "phone",
+          "type": "text"
+        },
+        {
+          "name": "email",
+          "type": "email"
+        },
+        {
+          "name": "advertiser_type",
+          "type": "select",
+          "values": ["supplier", "brand", "other"],
+          "maxSelect": 1
+        },
+        {
+          "name": "advertiser_type_custom",
+          "type": "text"
+        },
+        {
+          "name": "can_send_news",
+          "type": "bool"
+        },
+        {
+          "name": "stats_enabled",
+          "type": "bool"
+        }
+      ],
+      "listRule": "@request.auth.id != \"\"",
+      "viewRule": "@request.auth.id != \"\"",
+      "createRule": "@request.auth.id != \"\"",
+      "updateRule": "@request.auth.id = user.id",
+      "deleteRule": ""
+    }
+  ]
+}
