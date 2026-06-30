@@ -11,7 +11,6 @@ const pinia = createPinia()
 app.use(pinia)
 app.use(router)
 
-// Запускаем init и монтируем сразу — App.vue показывает спиннер пока loading=true
 const auth = useAuthStore()
 auth.init()
 app.mount('#app')
